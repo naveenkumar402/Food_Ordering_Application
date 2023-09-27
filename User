@@ -1,0 +1,25 @@
+class Users {
+	private String id;
+	private String name;
+	private String address;
+	private long mobile;
+	Users(String id,String name,String address,long mobile){
+		this.id=id;
+		this.name=name;
+		this.address=address;
+		this.mobile=mobile;
+	}
+	public String getid() {
+		return id;
+	}
+	public String getname() {
+		return name;
+	}
+	public String getaddress() {
+		return address;
+	}
+	public long getmobile() {
+		return mobile;
+	}
+
+}
