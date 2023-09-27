@@ -1,0 +1,15 @@
+class Food {
+	private String food_name;
+	private double price;
+	Food(String food_name,double price){
+		this.food_name=food_name;
+		this.price=price;
+	}
+	public String getfoodname() {
+		return food_name;
+	}
+	public double getprice() {
+		return price;
+	}
+
+}
