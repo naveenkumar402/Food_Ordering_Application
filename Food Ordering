@@ -1,0 +1,43 @@
+class Food_Ordering{
+	private List<Users> user;
+	private List<Food> food;
+	Food_Ordering(){
+		user=new ArrayList<>();
+		food=new ArrayList<>();
+	}
+	public void addfood(Food f) {
+		food.add(f);
+	}
+	public void addUser(Users u) {
+		user.add(u);
+	}
+	public String findUser(String name) {
+		for(Users u:user) {
+			if(u.getid().equals(name)) return u.getid();
+		}
+		return null;
+	}
+	public String findfood(String name) {
+		for(Food f:food) {
+			if(f.getfoodname().equalsIgnoreCase(name)) return f.getfoodname().toString();
+		}
+		return null;
+	}
+	public void orderfood(String foodname,int quantity) {
+		double totcst=0;
+		for(Food f:food) {
+			if(f.getfoodname().equalsIgnoreCase(foodname)) {
+				totcst+=f.getprice()*quantity;
+				System.out.println(f.getfoodname().toString()+" - "+f.getprice());
+			}
+		}
+		System.out.println("Quantity: "+quantity+"\nTotal cost: "+totcst);
+	}
+	public List<Food> getfood() {
+		return food;
+	}
+	public List<Users> getUsers(){
+		return user;
+	}
+
+}
