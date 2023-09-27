@@ -1,0 +1,81 @@
+public class FoodOrderingApplication {
+
+	public static void main(String[] args) {
+		Scanner sc=new Scanner(System.in);
+		Food_Ordering fod=new Food_Ordering();
+		Food f1=new Food("Chicken Briyani",150);
+		Food f2=new Food("Mutton Briyani",200);
+		Food f3=new Food("Beef Briyani",200);
+		Food f4=new Food("Chicken burger",100);
+		Food f5=new Food("Chicken 65",100);
+		Food f6=new Food("Veg meals",150);
+		Food f7=new Food("Ice cream",50);
+		fod.addfood(f1);
+		fod.addfood(f2);
+		fod.addfood(f3);
+		fod.addfood(f4);
+		fod.addfood(f5);
+		fod.addfood(f6);
+		fod.addfood(f7);
+		while(true) {
+			System.out.println("1.Add user\n2.View food\n3.Order food\n4.Exit");
+			int choice=sc.nextInt();
+			switch(choice) {
+			case 1:
+				int i=1;
+				String id="user"+i++;
+				System.out.println("Enter Name:");
+				String name=sc.next();
+				System.out.println("Enter mobile number:");
+				long mobile=sc.nextLong();
+				System.out.println("Enter address:");
+				String address=sc.next();
+				Users u=new Users(id,name,address,mobile);
+				fod.addUser(u);
+				System.out.println("Account created Successfully\n");
+				System.out.println("User Id: "+id.toString());
+				System.out.println("********************");
+				break;
+			case 2:
+				for(Food f:fod.getfood()) {
+					System.out.println(f.getfoodname().toString()+" - "+f.getprice());
+				}
+				System.out.println("********************");
+				break;
+			case 3:
+				System.out.println("Enter User Id:");
+				String str=sc.next();
+				String finduserbyId=fod.findUser(str);
+				if(finduserbyId!=null) {
+					System.out.println("Enter food name:");
+					String fname=sc.next()+" "+sc.next();
+					String findbyfood=fod.findfood(fname);
+					if(findbyfood!=null) {
+						System.out.println("Enter Quantity:");
+						int qty=sc.nextInt();
+						fod.orderfood(fname, qty);
+						for(Users us:fod.getUsers()) {
+							if(us.getid().equalsIgnoreCase(str)) {
+								System.out.println("Name: "+us.getname()+"\nMobile: "+us.getmobile()
+								+"\nAddress: "+us.getaddress()+"\n\nThank you");
+							}
+						}
+					}
+					else System.out.println("Food not Available");
+				}
+				else System.out.println("User not found");
+				System.out.println("********************");
+				break;
+			case 4:
+				System.exit(0);
+				break;
+			default:
+				System.out.println("Invalid option");
+			}
+		}
+		
+		
+
+	}
+
+}
